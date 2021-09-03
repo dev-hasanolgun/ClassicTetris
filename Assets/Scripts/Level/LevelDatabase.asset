@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738e66805e1d68e4ca4737da4671ccdb, type: 3}
+  m_Name: LevelDatabase
+  m_EditorClassIdentifier: 
+  Levels:
+  - LevelNumber: 0
+    LinesToLevelUp: 10
+    LevelSpeed: 0.799
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4294753340
+  - LevelNumber: 1
+    LinesToLevelUp: 20
+    LevelSpeed: 0.715
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278233088
+    - serializedVersion: 2
+      rgba: 4279826616
+  - LevelNumber: 2
+    LinesToLevelUp: 30
+    LevelSpeed: 0.632
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4291559640
+    - serializedVersion: 2
+      rgba: 4294473976
+  - LevelNumber: 3
+    LinesToLevelUp: 40
+    LevelSpeed: 0.549
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4283750488
+  - LevelNumber: 4
+    LinesToLevelUp: 50
+    LevelSpeed: 0.466
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4283957476
+    - serializedVersion: 2
+      rgba: 4288215128
+  - LevelNumber: 5
+    LinesToLevelUp: 60
+    LevelSpeed: 0.383
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4288215128
+    - serializedVersion: 2
+      rgba: 4294740072
+  - LevelNumber: 6
+    LinesToLevelUp: 70
+    LevelSpeed: 0.3
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278204664
+    - serializedVersion: 2
+      rgba: 4286348412
+  - LevelNumber: 7
+    LinesToLevelUp: 80
+    LevelSpeed: 0.216
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294722664
+    - serializedVersion: 2
+      rgba: 4280287400
+  - LevelNumber: 8
+    LinesToLevelUp: 90
+    LevelSpeed: 0.133
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4278204664
+  - LevelNumber: 9
+    LinesToLevelUp: 100
+    LevelSpeed: 0.1
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278204664
+    - serializedVersion: 2
+      rgba: 4282687740
+  - LevelNumber: 10
+    LinesToLevelUp: 100
+    LevelSpeed: 0.083
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4294753340
+  - LevelNumber: 11
+    LinesToLevelUp: 100
+    LevelSpeed: 0.083
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278233088
+    - serializedVersion: 2
+      rgba: 4279826616
+  - LevelNumber: 12
+    LinesToLevelUp: 100
+    LevelSpeed: 0.083
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4291559640
+    - serializedVersion: 2
+      rgba: 4294473976
+  - LevelNumber: 13
+    LinesToLevelUp: 100
+    LevelSpeed: 0.067
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4283750488
+  - LevelNumber: 14
+    LinesToLevelUp: 100
+    LevelSpeed: 0.067
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4283957476
+    - serializedVersion: 2
+      rgba: 4288215128
+  - LevelNumber: 15
+    LinesToLevelUp: 100
+    LevelSpeed: 0.067
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4288215128
+    - serializedVersion: 2
+      rgba: 4294740072
+  - LevelNumber: 16
+    LinesToLevelUp: 110
+    LevelSpeed: 0.05
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278204664
+    - serializedVersion: 2
+      rgba: 4286348412
+  - LevelNumber: 17
+    LinesToLevelUp: 120
+    LevelSpeed: 0.05
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294722664
+    - serializedVersion: 2
+      rgba: 4280287400
+  - LevelNumber: 18
+    LinesToLevelUp: 130
+    LevelSpeed: 0.05
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4278204664
+  - LevelNumber: 19
+    LinesToLevelUp: 140
+    LevelSpeed: 0.033
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4278204664
+    - serializedVersion: 2
+      rgba: 4282687740
