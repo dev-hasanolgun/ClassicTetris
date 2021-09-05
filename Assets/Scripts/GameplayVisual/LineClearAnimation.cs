@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class LineClearAnimation : MonoBehaviour, IPoolable
+namespace ClassicTetris.GameplayVisual
 {
-    public Animator Animator;
-    private float _timer;
-
-
-    private void Update()
+    public class LineClearAnimation : MonoBehaviour, IPoolable
     {
-        if (_timer > 0.5f)
+        public Animator Animator;
+        
+        private float _timer;
+        
+        private void Update()
         {
-            _timer = 0;
-            PoolManager.Instance.PoolObject("lineClearAnim", this);
-            this.gameObject.SetActive(false);
+            if (_timer > 0.5f)
+            {
+                _timer = 0;
+                PoolManager.Instance.PoolObject("lineClearAnim", this);
+                this.gameObject.SetActive(false);
+            }
+            _timer += Time.deltaTime;
         }
-        _timer += Time.deltaTime;
     }
 }

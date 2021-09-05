@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ButtonUI : MonoBehaviour
+namespace ClassicTetris.UI
 {
-    public abstract void ExecuteOption();
+    public abstract class ButtonUI : MonoBehaviour
+    {
+        public abstract void ExecuteOption();
+    }
 }

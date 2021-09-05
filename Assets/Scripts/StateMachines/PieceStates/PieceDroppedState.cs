@@ -1,20 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.StateMachines.PieceStates
+namespace ClassicTetris.StateMachines.PieceStates
 {
     public class PieceDroppedState : IState<PieceStateMachine>
     {
-        private PieceStateMachine _stateMachine;
+        private readonly PieceStateMachine _stateMachine;
+        
+        private List<int> _fullLines;
+        private bool _isLineClearing;
+        private float _pieceDropDelay;
+        
         public PieceDroppedState(PieceStateMachine stateMachine)
         {
             _stateMachine = stateMachine;
         }
 
-        private List<int> fullLines;
-        private bool _isLineClearing;
-        private float _pieceDropDelay;
-    
         public void Tick()
         {
             _pieceDropDelay += Time.deltaTime;
@@ -25,7 +26,7 @@ namespace devRHS.ClassicTetris.StateMachines.PieceStates
             }
             else if (_pieceDropDelay > 0.5f && _isLineClearing)
             {
-                EventManager.TriggerEvent("updatingGridVisual", new Dictionary<string, object>{{"fullLines", fullLines}, {"player", _stateMachine.Player}});
+                EventManager.TriggerEvent("updatingGridVisual", new Dictionary<string, object>{{"fullLines", _fullLines}, {"player", _stateMachine.Player}});
                 _pieceDropDelay = 0;
                 _stateMachine.SetState(new PieceFallingState(_stateMachine));
                 _isLineClearing = false;
@@ -35,15 +36,16 @@ namespace devRHS.ClassicTetris.StateMachines.PieceStates
         {
             var player = _stateMachine.Player;
             var piecePos = player.TetrominoController.CurrentTetromino.CellPositions;
-            fullLines = new List<int>(player.GridManager.GetFullLines(piecePos));
-        
-            if (fullLines.Count != 0)
+
+            player.PlayerStats.DroppedPieces++;
+            
+            if (player.GridController.TryClearFullLines(piecePos, out var fullLines))
             {
+                _fullLines = fullLines;
                 _isLineClearing = true;
-                player.GridManager.ClearFullLines(piecePos);
                 player.PlayerStats.ClearedLines += fullLines.Count;
-                player.LevelManager.LevelUp(player);
-                player.LevelManager.UpdateScore(player, fullLines.Count);
+                player.LevelController.LevelUp(player);
+                player.LevelController.UpdateScore(player, fullLines.Count);
 
                 EventManager.TriggerEvent("onLineClear", new Dictionary<string, object>{{"fullLines", fullLines}});
             }

@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class SwapUI : ICommand
+namespace ClassicTetris.Commands
 {
-    private Canvas _currentUI, _nextUI;
-    public SwapUI(Canvas currentUI, Canvas nextUI)
+    public class SwapUI : ICommand
     {
-        _currentUI = currentUI;
-        _nextUI = nextUI;
-    }
-    public void Execute()
-    {
-        _currentUI.gameObject.SetActive(false);
-        _nextUI.gameObject.SetActive(true);
-    }
+        private readonly Canvas _currentUI, _nextUI;
+        public SwapUI(Canvas currentUI, Canvas nextUI)
+        {
+            _currentUI = currentUI;
+            _nextUI = nextUI;
+        }
+        public void Execute()
+        {
+            _currentUI.gameObject.SetActive(false);
+            _nextUI.gameObject.SetActive(true);
+        }
 
-    public void Undo()
-    {
-        _currentUI.gameObject.SetActive(true);
-        _nextUI.gameObject.SetActive(false);
+        public void Undo()
+        {
+            _currentUI.gameObject.SetActive(true);
+            _nextUI.gameObject.SetActive(false);
+        }
     }
 }

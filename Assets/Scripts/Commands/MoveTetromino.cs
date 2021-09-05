@@ -1,33 +1,36 @@
-using devRHS.ClassicTetris.TetrominoCreator;
+using ClassicTetris.TetrominoBase;
 using UnityEngine;
 
-public class MoveTetromino : ICommand
+namespace ClassicTetris.Commands
 {
-    private Tetromino _tetromino;
-    private Vector3 _direction;
+    public class MoveTetromino : ICommand
+    {
+        private readonly Tetromino _tetromino;
+        private readonly Vector3 _direction;
 
-    public MoveTetromino(Tetromino tetromino, Vector3 direction)
-    {
-        _tetromino = tetromino;
-        _direction = direction;
-    }
-    public void Move(Tetromino tetromino, Vector3 direction)
-    {
-        var positions = tetromino.CellPositions;
-        for (int i = 0; i < positions.Length; i++)
+        public MoveTetromino(Tetromino tetromino, Vector3 direction)
         {
-            positions[i] += direction;
+            _tetromino = tetromino;
+            _direction = direction;
+        }
+        public void Execute()
+        {
+            Move(_tetromino, _direction);
         }
 
-        tetromino.CenterPos += direction;
-    }
-    public void Execute()
-    {
-        Move(_tetromino, _direction);
-    }
+        public void Undo()
+        {
+            Move(_tetromino, -_direction);
+        }
+        private static void Move(Tetromino tetromino, Vector3 direction) // Move every cell block of the tetromino
+        {
+            var positions = tetromino.CellPositions;
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i] += direction;
+            }
 
-    public void Undo()
-    {
-        Move(_tetromino, -_direction);
+            tetromino.CenterPos += direction;
+        }
     }
 }

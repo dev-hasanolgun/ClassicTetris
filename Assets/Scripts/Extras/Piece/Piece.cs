@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.Piece
+namespace ClassicTetris.Piece
 {
     public abstract class Piece
     {

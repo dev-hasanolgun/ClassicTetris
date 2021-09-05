@@ -4,65 +4,75 @@ using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.TetrominoCreator
+namespace ClassicTetris.TetrominoBase
 {
     public class TetrominoCreator : SerializedMonoBehaviour
     {
+        #region Fields
+
         [OnInspectorInit("UpdateProperties")]
         [BoxGroup("Tetromino Creator")]
         [TableMatrix(DrawElementMethod = "DrawCell", SquareCells = true, HideColumnIndices = true, HideRowIndices = true, ResizableColumns = false)]
-        public bool[,] CellDrawingBool = new bool[5,5];
-        
-        [BoxGroup("Tetromino Creator")]
-        [PropertyOrder(4)]
-        [SerializeField] 
-        private TetrominoDatabase _tetrominoDatabase;
+        [SerializeField]
+        private bool[,] CellDrawingBool = new bool[5,5];
         
         [BoxGroup("Tetromino Creator")]
         [OnValueChanged("UpdateTetrominoName")]
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [SuppressInvalidAttributeError]
-        public string TetrominoName;
-        
+        [SerializeField]
+        private string TetrominoName;
+
         [BoxGroup("Tetromino Creator")]
-        //[InfoBox("Piece already exist", InfoMessageType.Warning, "_isTetrominoExist")]
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [OnValueChanged("UpdateProperties"), OnValueChanged("ShowCurrentTetromino")]
         [PropertyRange(0,"_tetrominoLastIndex")]
         [SuppressInvalidAttributeError]
-        public int CurrentTetromino;
-        private int _tetrominoLastIndex;
-        
+        [SerializeField]
+        private int CurrentTetromino;
+
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [OnValueChanged("ShowCurrentTetromino")]
         [PropertyRange(0,"_orientationLastIndex")]
         [SuppressInvalidAttributeError]
-        public int CurrentOrientation;
-        private int _orientationLastIndex;
+        [SerializeField]
+        private int CurrentOrientation;
 
         [HideIf("_isOrientationExist")]
         [ShowIf("_isTetrominoExist")]
         [OnValueChanged("UpdateOrientableCheck")]
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [SuppressInvalidAttributeError]
-        public bool IsOrientable;
+        [SerializeField]
+        private bool IsOrientable;
         
         [ShowIf("_isTetrominoExist")]
         [OnValueChanged("UpdatePieceSprite")]
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [SuppressInvalidAttributeError]
-        public Sprite CellSprite;
+        [SerializeField]
+        private Sprite CellSprite;
         
+        [BoxGroup("Tetromino Creator")]
+        [PropertyOrder(4)]
+        [SerializeField]
+        private TetrominoDatabase _tetrominoDatabase;
+        
+        private int _tetrominoLastIndex;
+        private int _orientationLastIndex;
         private bool _isTetrominoExist;
         private bool _isOrientationExist;
-        
-        //[HideIf("_isTetrominoExist")]
+
+        #endregion
+
+        #region InspectorButtons
+
         [VerticalGroup("Tetromino Creator/Tetromino Create Group")]
         [Button("Create Tetromino", ButtonSizes.Medium)]
         [GUIColor(0,1,0)]
         private void CreateTetromino()
         {
-            _tetrominoDatabase.Tetrominoes.Add(new Tetromino(new List<Orientation>{new Orientation(GetPositions())}, TetrominoName));
+            _tetrominoDatabase.Tetrominoes.Add(new Tetromino(new List<Orientation>{new Orientation(GetPositions())}, CellSprite, TetrominoName));
             CurrentTetromino += _tetrominoDatabase.Tetrominoes.Count > 1 ? 1 : 0;
             _isTetrominoExist = true;
             _tetrominoDatabase.Tetrominoes[CurrentTetromino].Orientable = IsOrientable;
@@ -124,7 +134,11 @@ namespace devRHS.ClassicTetris.TetrominoCreator
             UpdateProperties();
             ShowCurrentTetromino();
         }
-        
+
+        #endregion
+
+        #region Methods
+
         private void UpdateProperties()
         {
             if (_tetrominoDatabase.Tetrominoes.Count == 0)
@@ -203,7 +217,7 @@ namespace devRHS.ClassicTetris.TetrominoCreator
                 _tetrominoDatabase.Tetrominoes[CurrentTetromino].CellSprite = CellSprite;
             }
         }
-        public Vector3[] GetPositions()
+        private Vector3[] GetPositions()
         {
             List<Vector3> positions = new List<Vector3>();
 
@@ -236,4 +250,6 @@ namespace devRHS.ClassicTetris.TetrominoCreator
             return value;
         }
     }
+
+    #endregion
 }

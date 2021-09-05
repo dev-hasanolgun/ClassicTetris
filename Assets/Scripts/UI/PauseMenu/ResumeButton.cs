@@ -1,9 +1,13 @@
-public class ResumeButton : ButtonUI
+namespace ClassicTetris.UI
 {
-    public PauseMenuUI PauseMenuUI;
-    public override void ExecuteOption()
+    public class ResumeButton : ButtonUI
     {
-        EventManager.TriggerEvent("OnResumeGame", null);
-        PauseMenuUI.gameObject.SetActive(false);
+        public PauseMenuUI PauseMenuUI;
+
+        public override void ExecuteOption()
+        {
+            EventManager.TriggerEvent("OnResumeGame", null);
+            PauseMenuUI.gameObject.SetActive(false);
+        }
     }
 }

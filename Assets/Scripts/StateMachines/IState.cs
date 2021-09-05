@@ -1,6 +1,9 @@
-public interface IState<T>
+namespace ClassicTetris.StateMachines
 {
-    void Tick();
-    void OnStateEnter();
-    void OnStateExit();
+    public interface IState<T>
+    {
+        void Tick();
+        void OnStateEnter();
+        void OnStateExit();
+    }
 }

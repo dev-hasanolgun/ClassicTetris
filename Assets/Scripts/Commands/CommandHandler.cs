@@ -1,45 +1,46 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class CommandHandler
+namespace ClassicTetris.Commands
 {
-    public List<ICommand> CommandList = new List<ICommand>();
-    private int index;
-
-    public void AddCommand(ICommand command)
+    public class CommandHandler
     {
-        CommandList.Add(command);
-        command.Execute();
-        index++;
-    }
+        private int _index;
+        private readonly List<ICommand> _commandList = new List<ICommand>();
 
-    public void UndoCommand()
-    {
-        if (CommandList.Count == 0)
+        public void AddCommand(ICommand command)
         {
-            return;
+            _commandList.Add(command);
+            command.Execute();
+            _index++;
         }
 
-        if (index > 0)
+        public void UndoCommand()
         {
-            CommandList[index - 1].Undo();
-            CommandList.RemoveAt(index - 1);
-            index--;
-        }
-    }
+            if (_commandList.Count == 0)
+            {
+                return;
+            }
 
-    public void RedoCommand()
-    {
-        if (CommandList.Count == 0)
-        {
-            return;
+            if (_index > 0)
+            {
+                _commandList[_index - 1].Undo();
+                _commandList.RemoveAt(_index - 1);
+                _index--;
+            }
         }
 
-        if (index < CommandList.Count)
+        public void RedoCommand()
         {
-            index++;
-            CommandList[index - 1].Execute();
+            if (_commandList.Count == 0)
+            {
+                return;
+            }
+
+            if (_index < _commandList.Count)
+            {
+                _index++;
+                _commandList[_index - 1].Execute();
+            }
         }
     }
 }

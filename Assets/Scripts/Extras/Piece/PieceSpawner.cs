@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace devRHS.ClassicTetris.Piece
+namespace ClassicTetris.Piece
 {
     public class PieceSpawner
     {

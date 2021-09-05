@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.Level
+namespace ClassicTetris.GameLevel
 {
     [Serializable]
     public class Level
     {
+        public List<Color32> LevelColors;
         public int LevelNumber;
         public int LinesToLevelUp;
         public float LevelSpeed;
-        public List<Color32> LevelColors;
 
         public Level(int levelNumber, int linesToLevelUp, float levelSpeed, List<Color32> levelColors)
         {

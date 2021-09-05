@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface ICommand
+namespace ClassicTetris.Commands
 {
-    void Execute();
-    void Undo();
+    public interface ICommand
+    {
+        void Execute();
+        void Undo();
+    }
 }

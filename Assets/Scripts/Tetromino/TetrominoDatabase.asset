@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaeb02ed54f0fa45ace707130a60182, type: 3}
   m_Name: TetrominoDatabase
   m_EditorClassIdentifier: 
-  ColorSchemeBlock: {fileID: 2800000, guid: 39e4048cc91071740a5e249e89ddeca6, type: 3}
+  ColorScheme: {fileID: 2800000, guid: 39e4048cc91071740a5e249e89ddeca6, type: 3}
   Tetrominoes:
   - Orientations:
     - Positions:

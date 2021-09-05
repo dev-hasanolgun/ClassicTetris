@@ -1,64 +1,50 @@
 using System.Collections.Generic;
-using devRHS.ClassicTetris.Level;
-using devRHS.ClassicTetris.StateMachines.PieceStates;
-using devRHS.ClassicTetris.StateMachines.UIStates;
+using ClassicTetris.GameplayVisual;
+using ClassicTetris.GameLevel;
+using ClassicTetris.StateMachines.PieceStates;
+using ClassicTetris.StateMachines.GameStates;
 using UnityEngine;
-using devRHS.ClassicTetris.TetrominoCreator;
+using ClassicTetris.TetrominoBase;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
-    
-    public Player Player;
-    public LevelDatabase LevelDatabase;
-    public TetrominoDatabase TetrominoDatabase;
     public GameStateMachine GameStateMachine;
-    public PieceVisualManager PieceVisualManager;
-    public bool IsGameStarted;
+    public Player Player;
+    public TetrominoDatabase TetrominoDatabase;
+    public TetrominoVisualManager TetrominoVisualManager;
+    public LevelDatabase LevelDatabase;
     
-    [HideInInspector] public Tetromino CurrentTetromino;
-    [HideInInspector] public TetrominoSpawner Spawner;
+    public static GameManager Instance { get; private set; }
     
-    private float _initialDelay;
-    public void StartGame(int startLevel = 0)
+    public void StartGame(int startLevel = 0) // Create the player and start the game from selected level.
     {
-        Player = new Player(new GridManager(), new LevelManager(LevelDatabase, startLevel),  new TetrominoController(),  new TetrominoSpawner(TetrominoDatabase), Vector3.zero, "s");
-        Player.PieceStateMachine = new PieceStateMachine(Player, this);
+        Player = new Player(new GridController(Vector3.zero,10,22), new LevelController(LevelDatabase, startLevel),  new TetrominoController(),  new TetrominoSpawner(TetrominoDatabase));
+        
         Player.PieceStateMachine.SetState(new PieceFallingState(Player.PieceStateMachine));
-        EventManager.TriggerEvent("updatingTextures", new Dictionary<string, object>{{"currentColors", null}, {"desiredColors", LevelDatabase.Levels[startLevel].LevelColors}});
-        _initialDelay = 0;
         GameStateMachine.SetState(new GameState(GameStateMachine));
-    }
-
-    private void Start()
-    {
-        GameStateMachine = new GameStateMachine();
-        GameStateMachine.SetState(new MenuState(GameStateMachine));
+        
+        EventManager.TriggerEvent("updatingTextures", new Dictionary<string, object>{{"currentColors", null}, {"desiredColors", LevelDatabase.Levels[startLevel].LevelColors}});
     }
 
     private void Awake()
     {
-        if (_instance != null && _instance != this) 
+        if (Instance != null && Instance != this) 
         { 
             Destroy(this.gameObject);
             return;
         }
 
-        _instance = this;
+        Instance = this;
         
         DontDestroyOnLoad(this.gameObject);
     }
-
+    private void Start()
+    {
+        GameStateMachine = new GameStateMachine();
+        GameStateMachine.SetState(new MenuState(GameStateMachine));
+    }
     private void Update()
     {
-        if (_initialDelay > 1.6f)
-        {
-            GameStateMachine.CurrentState.Tick();
-        }
-        else
-        {
-            _initialDelay += Time.deltaTime;
-        }
+        GameStateMachine.CurrentState.Tick();
     }
 }

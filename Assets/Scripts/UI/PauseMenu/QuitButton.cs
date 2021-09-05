@@ -1,10 +1,14 @@
 using UnityEngine.SceneManagement;
 
-public class QuitButton : ButtonUI
+namespace ClassicTetris.UI
 {
-    public override void ExecuteOption()
+    public class QuitButton : ButtonUI
     {
-        EventManager.TriggerEvent("OnQuitGame", null);
-        SceneManager.LoadScene("MainMenuScene");
+        public override void ExecuteOption()
+        {
+            EventManager.TriggerEvent("OnQuitGame", null);
+            SceneManager.LoadScene("MainMenuScene");
+        }
     }
+
 }

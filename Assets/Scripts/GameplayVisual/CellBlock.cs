@@ -1,11 +1,13 @@
-using System;
 using UnityEngine;
 
-public class CellBlock : MonoBehaviour, IPoolable
+namespace ClassicTetris.GameplayVisual
 {
-    public SpriteRenderer SpriteRenderer;
-    private void OnDisable()
+    public class CellBlock : MonoBehaviour, IPoolable
     {
-        PoolManager.Instance.PoolObject("cellBlocks", this);
+        public SpriteRenderer SpriteRenderer;
+        private void OnDisable()
+        {
+            PoolManager.Instance.PoolObject("cellBlocks", this);
+        }
     }
 }

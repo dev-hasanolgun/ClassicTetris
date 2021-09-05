@@ -1,11 +1,13 @@
-using devRHS.ClassicTetris.StateMachines.PieceStates;
+using ClassicTetris.StateMachines.PieceStates;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.StateMachines.UIStates
+namespace ClassicTetris.StateMachines.GameStates
 {
     public class GameState : IState<GameStateMachine>
     {
-        private GameStateMachine _stateMachine;
+        private readonly GameStateMachine _stateMachine;
+        private float _initialDelay;
+
         public GameState(GameStateMachine stateMachine)
         {
             _stateMachine = stateMachine;
@@ -14,7 +16,6 @@ namespace devRHS.ClassicTetris.StateMachines.UIStates
         public void Tick()
         {
             var player = GameManager.Instance.Player;
-            
             player.PieceStateMachine.CurrentState.Tick();
 
             if (Input.GetKeyDown(KeyCode.Escape))

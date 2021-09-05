@@ -1,11 +1,10 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace devRHS.ClassicTetris.StateMachines.UIStates
+namespace ClassicTetris.StateMachines.GameStates
 {
     public class GameOverState : IState<GameStateMachine>
     {
-        private GameStateMachine _stateMachine;
+        private readonly GameStateMachine _stateMachine;
         public GameOverState(GameStateMachine stateMachine)
         {
             _stateMachine = stateMachine;

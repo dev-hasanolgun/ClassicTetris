@@ -1,14 +1,12 @@
-namespace devRHS.ClassicTetris.StateMachines.PieceStates
+namespace ClassicTetris.StateMachines.PieceStates
 {
     public class PieceStateMachine : BaseStateMachine<PieceStateMachine>
     {
-        public Player Player;
-        public GameManager GameManager;
+        public readonly Player Player;
 
-        public PieceStateMachine(Player player, GameManager gameManager)
+        public PieceStateMachine(Player player)
         {
             Player = player;
-            GameManager = gameManager;
         }
     }
 }

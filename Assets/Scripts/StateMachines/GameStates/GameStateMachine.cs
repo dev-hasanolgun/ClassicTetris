@@ -1,4 +1,4 @@
-namespace devRHS.ClassicTetris.StateMachines.UIStates
+namespace ClassicTetris.StateMachines.GameStates
 {
     public class GameStateMachine : BaseStateMachine<GameStateMachine>
     {

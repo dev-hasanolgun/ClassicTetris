@@ -1,36 +1,40 @@
-using System;
 using UnityEngine;
 
-public class MainMenuUI : MonoBehaviour
+namespace ClassicTetris.UI
 {
-    public Canvas Canvas;
-    private int exitCounter;
-
-    private void Play()
+    public class MainMenuUI : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            exitCounter = 0;
-            UIManager.Instance.SendUISwapCommand(Canvas, UIManager.Instance.LevelSelectUI.Canvas);
-        }
-    }
+        public Canvas Canvas;
+        
+        private int _exitCounter;
 
-    private void Exit()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        private void Play()
         {
-            exitCounter++;
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                _exitCounter = 0;
+                UIManager.Instance.SendUISwapCommand(Canvas, UIManager.Instance.LevelSelectUI.Canvas);
+            }
         }
 
-        if (exitCounter > 1)
+        private void Exit()
         {
-            Application.Quit();
-        }
-    }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _exitCounter++;
+            }
 
-    private void Update()
-    {
-        Play();
-        Exit();
+            if (_exitCounter > 1)
+            {
+                _exitCounter = 0;
+                Application.Quit();
+            }
+        }
+
+        private void Update()
+        {
+            Play();
+            Exit();
+        }
     }
 }

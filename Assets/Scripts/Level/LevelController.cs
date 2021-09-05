@@ -1,34 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.Level
+namespace ClassicTetris.GameLevel
 {
-    public class LevelManager
+    public class LevelController
     {
         public Level CurrentLevel;
-        private LevelDatabase _levelDb;
-        public int StartLevel;
+        
+        private readonly LevelDatabase _levelDb;
+        private readonly int _startLevel;
 
-        public LevelManager(LevelDatabase levelDb, int startLevel = 0)
+        public LevelController(LevelDatabase levelDb, int startLevel = 0)
         {
             _levelDb = levelDb;
-            StartLevel = startLevel;
+            _startLevel = startLevel;
             CurrentLevel = _levelDb.Levels[startLevel];
-        }
-
-        public Color32[] DefaultBlockColors = {new Color32(66,66,255,255), new Color32(181,49,33,255)};
+        }        
 
         public void LevelUp(Player player)
         {
-            if (CurrentLevel.LevelNumber == StartLevel)
+            if (CurrentLevel.LevelNumber == _startLevel)
             {
-                if (player.PlayerStats.ClearedLines >= CurrentLevel.LinesToLevelUp)
+                if (player.PlayerStats.ClearedLines >= CurrentLevel.LinesToLevelUp) // First level up differs to the starting level because of the bug in original game so it has to be static
                 {
                     EventManager.TriggerEvent("updatingTextures", new Dictionary<string, object>{{"currentColors", CurrentLevel.LevelColors}, {"desiredColors", _levelDb.Levels[CurrentLevel.LevelNumber+1].LevelColors}});
                     CurrentLevel = _levelDb.Levels[CurrentLevel.LevelNumber+1];
                 }
             }
-            else if (player.PlayerStats.ClearedLines - _levelDb.Levels[StartLevel].LinesToLevelUp >= (CurrentLevel.LevelNumber - StartLevel) * 10)
+            else if (player.PlayerStats.ClearedLines - _levelDb.Levels[_startLevel].LinesToLevelUp >= (CurrentLevel.LevelNumber - _startLevel) * 10) // Leveling up after first level up is same which 10 line clear per level
             {
                 CurrentLevel = _levelDb.Levels[CurrentLevel.LevelNumber+1];
             }

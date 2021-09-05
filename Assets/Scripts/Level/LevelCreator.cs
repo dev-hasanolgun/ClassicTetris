@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace devRHS.ClassicTetris.Level
+namespace ClassicTetris.GameLevel
 {
     public class LevelCreator : MonoBehaviour
     {
+        [BoxGroup("Create Level")]
+        [PropertyOrder(4)]
+        public LevelDatabase LevelDatabase;
+        
         [BoxGroup("Create Level")]
         [SerializeField]
         private int _levelNumber;
@@ -22,12 +26,8 @@ namespace devRHS.ClassicTetris.Level
         [BoxGroup("Create Level")]
         [SerializeField]
         private List<Color32> _levelColors = new List<Color32>();
-        
-        [BoxGroup("Create Level")]
-        [PropertyOrder(4)]
-        public LevelDatabase LevelDatabase;
-        
-        [Button("Create Piece", ButtonSizes.Medium)]
+
+        [Button("Create Level", ButtonSizes.Medium)]
         [GUIColor(0,1,0)]
         private void CreateLevel()
         {

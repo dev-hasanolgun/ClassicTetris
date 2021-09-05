@@ -218,18 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a81b6dcf3b46c947aec93999c26d484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelDatabase: {fileID: 11400000, guid: cd46ed6f17f86d64ba3913ad7d0c4a8d, type: 2}
   TetrominoDatabase: {fileID: 11400000, guid: fa8c45e299a5f1e45a2ad4d3bf035229, type: 2}
-  PieceVisualManager: {fileID: 2343712418100965968, guid: 7a8765c806dd4664aaf4d13a07571819, type: 3}
-  IsGameStarted: 0
-  CurrentTetromino:
-    Orientations: []
-    CellSprite: {fileID: 0}
-    CellPositions: []
-    CenterPos: {x: 0, y: 0, z: 0}
-    CurrentOrientation: 0
-    Orientable: 0
-    TetrominoName: 
+  TetrominoVisualManager: {fileID: 2343712418100965968, guid: 7a8765c806dd4664aaf4d13a07571819, type: 3}
+  LevelDatabase: {fileID: 11400000, guid: cd46ed6f17f86d64ba3913ad7d0c4a8d, type: 2}
 --- !u!4 &499530246
 Transform:
   m_ObjectHideFlags: 0
@@ -316,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb0d1cd13954d645a6a3806d7c31b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelDatabase: {fileID: 11400000, guid: cd46ed6f17f86d64ba3913ad7d0c4a8d, type: 2}
   _levelNumber: 0
   _linesToLevelUp: 0
   _levelSpeed: 0
@@ -324,7 +316,6 @@ MonoBehaviour:
     rgba: 0
   - serializedVersion: 2
     rgba: 0
-  LevelDatabase: {fileID: 11400000, guid: cd46ed6f17f86d64ba3913ad7d0c4a8d, type: 2}
 --- !u!4 &1086618051
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +363,6 @@ MonoBehaviour:
   MainMenuUI: {fileID: 5864607122043326111, guid: 753f25d24ae947a439d88add12967e8c, type: 3}
   LevelSelectUI: {fileID: 6884038140602081377, guid: 0e8638eb667c482458414c579ca448d6, type: 3}
   InGameUI: {fileID: 6663240499866730432, guid: e9b653953892e7a4589fbdfb94954fa1, type: 3}
-  SavingScoreUI: {fileID: 0}
 --- !u!4 &1369077523
 Transform:
   m_ObjectHideFlags: 0
@@ -618,22 +608,7 @@ MonoBehaviour:
       Data: false
     - Name: 
       Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
       Data: false
-    - Name: 
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 5
-      Data: true
     - Name: 
       Entry: 5
       Data: false
@@ -652,6 +627,21 @@ MonoBehaviour:
     - Name: 
       Entry: 5
       Data: false
+    - Name: 
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 5
       Data: false
@@ -691,12 +681,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  _tetrominoDatabase: {fileID: 11400000, guid: fa8c45e299a5f1e45a2ad4d3bf035229, type: 2}
   TetrominoName: 
-  CurrentTetromino: 6
+  CurrentTetromino: 0
   CurrentOrientation: 0
-  IsOrientable: 0
+  IsOrientable: 1
   CellSprite: {fileID: 21300000, guid: 89d755f87aa5c1d459c53f293ba69cdc, type: 3}
+  _tetrominoDatabase: {fileID: 11400000, guid: fa8c45e299a5f1e45a2ad4d3bf035229, type: 2}
 --- !u!4 &1942272143
 Transform:
   m_ObjectHideFlags: 0

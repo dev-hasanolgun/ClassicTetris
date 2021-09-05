@@ -1,68 +1,74 @@
-using System;
-using System.Collections.Generic;
+using ClassicTetris.Commands;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+namespace ClassicTetris.UI
 {
-    private static UIManager _instance;
-    public static UIManager Instance => _instance;
-
-    public UIRoot UIRoot;
-    
-    [HideInInspector] public MainMenuUI MainMenuUI;
-    [HideInInspector] public LevelSelectionUI LevelSelectUI;
-    [HideInInspector] public InGameUI InGameUI;
-    [HideInInspector] public SavingScoreUI SavingScoreUI;
-    [HideInInspector] public CommandHandler CommandHandler = new CommandHandler();
-
-    public void SendUISwapCommand(Canvas currentUI, Canvas nextUI)
+    public class UIManager : MonoBehaviour
     {
-        ICommand swapUI = new SwapUI(currentUI, nextUI);
-        CommandHandler.AddCommand(swapUI);
-    }
+        public static UIManager Instance { get; private set; }
 
-    public void ReturnPreviousUI()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public UIRoot UIRoot;
+
+        [HideInInspector] public MainMenuUI MainMenuUI;
+        [HideInInspector] public LevelSelectionUI LevelSelectUI;
+        [HideInInspector] public InGameUI InGameUI;
+
+        private readonly CommandHandler _commandHandler = new CommandHandler();
+
+        public void SendUISwapCommand(Canvas currentUI, Canvas nextUI)
         {
-            CommandHandler.UndoCommand();
-        }
-    }
-    private void Awake()
-    {
-        if (_instance != null && _instance != this) 
-        { 
-            Destroy(this.gameObject);
-            return;
+            ICommand swapUI = new SwapUI(currentUI, nextUI);
+            _commandHandler.AddCommand(swapUI);
         }
 
-        _instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        if (scene.name == "GameplayScene")
+        public void ReturnPreviousUI()
         {
-            PoolManager.Instance.ClearPool();
-            InGameUI = Instantiate(UIRoot.InGameUI);
-            Instantiate(GameManager.Instance.PieceVisualManager);
-            GameManager.Instance.StartGame(LevelSelectUI.SelectedLevel);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _commandHandler.UndoCommand();
+            }
         }
 
-        if (scene.name == "MainMenuScene")
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            MainMenuUI = Instantiate(UIRoot.MainMenuUI);
-            LevelSelectUI = Instantiate(UIRoot.LevelSelectUI);
-            LevelSelectUI.gameObject.SetActive(false);
+            switch (scene.name)
+            {
+                case "GameplayScene":
+                    PoolManager.Instance.ClearPool();
+                    InGameUI = Instantiate(UIRoot.InGameUI);
+                    Instantiate(GameManager.Instance.TetrominoVisualManager);
+                    GameManager.Instance.StartGame(LevelSelectUI.SelectedLevel);
+                    break;
+                case "MainMenuScene":
+                    MainMenuUI = Instantiate(UIRoot.MainMenuUI);
+                    LevelSelectUI = Instantiate(UIRoot.LevelSelectUI);
+                    LevelSelectUI.gameObject.SetActive(false);
+                    break;
+            }
+        }
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+
 }

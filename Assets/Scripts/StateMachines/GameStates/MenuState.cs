@@ -1,10 +1,8 @@
-using UnityEngine;
-
-namespace devRHS.ClassicTetris.StateMachines.UIStates
+namespace ClassicTetris.StateMachines.GameStates
 {
     public class MenuState : IState<GameStateMachine>
     {
-        private GameStateMachine _stateMachine;
+        private readonly GameStateMachine _stateMachine;
         public MenuState(GameStateMachine stateMachine)
         {
             _stateMachine = stateMachine;

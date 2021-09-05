@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using UnityEngine;
+using ClassicTetris.UI;
 
-namespace devRHS.ClassicTetris.StateMachines.UIStates
+namespace ClassicTetris.StateMachines.GameStates
 {
     public class PauseState : IState<GameStateMachine>
     {
-        private GameStateMachine _stateMachine;
+        private readonly GameStateMachine _stateMachine;
         public PauseState(GameStateMachine stateMachine)
         {
             _stateMachine = stateMachine;

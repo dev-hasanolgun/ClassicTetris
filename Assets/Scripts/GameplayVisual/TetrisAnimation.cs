@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TetrisAnimation : MonoBehaviour
+namespace ClassicTetris.GameplayVisual
 {
-    public Animator Animator;
-    private float _timer;
-
-    private void Update()
+    public class TetrisAnimation : MonoBehaviour
     {
-        if (_timer > 0.5f)
-        {
-            _timer = 0;
-            this.gameObject.SetActive(false);
-        }
+        public Animator Animator;
+        
+        private float _timer;
 
-        _timer += Time.deltaTime;
+        private void Update()
+        {
+            if (_timer > 0.5f)
+            {
+                _timer = 0;
+                this.gameObject.SetActive(false);
+            }
+
+            _timer += Time.deltaTime;
+        }
     }
 }

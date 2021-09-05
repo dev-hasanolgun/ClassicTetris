@@ -1,4 +1,4 @@
-namespace devRHS.ClassicTetris.StateMachines
+namespace ClassicTetris.StateMachines
 {
     public class BaseStateMachine<T> where T : class
     {
