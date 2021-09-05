@@ -165,9 +165,22 @@ namespace ClassicTetris.GameplayVisual
             }
         }
 
+        private void UpdateTetrominoVisual(Dictionary<string, object> message) // Update current piece block positions with new positions
+        {
+            var player = (Player) message["player"];
+            var gridPos = player.GridController.Grid.GridPos;
+            var positions = player.TetrominoController.CurrentTetromino.CellPositions;
+        
+            for (int i = 0; i < positions.Length; i++)
+            {
+                _currentTetrominoVisual[i].transform.position = positions[i] + gridPos;
+            }
+        }
+        
         private void LineClearVisual(Dictionary<string, object> message) // Play animations on line clear
         {
             var fullLines = (List<int>) message["fullLines"];
+            
             for (int i = 0; i < fullLines.Count; i++) // Play line clear animation
             {
                 var lineClearAnim = PoolManager.Instance.GetObjectFromPool("lineClearAnim", LineClearAnimation);
@@ -180,19 +193,7 @@ namespace ClassicTetris.GameplayVisual
                 TetrisEffectAnim.Play("TetrisEffect");
             }
         }
-    
-        private void UpdateTetrominoVisual(Dictionary<string, object> message) // Update current piece block positions with new positions
-        {
-            var player = (Player) message["player"];
-            var gridPos = player.GridController.Grid.GridPos;
-            var positions = player.TetrominoController.CurrentTetromino.CellPositions;
         
-            for (int i = 0; i < positions.Length; i++)
-            {
-                _currentTetrominoVisual[i].transform.position = positions[i] + gridPos;
-            }
-        }
-
         private void ClearFullLines(Dictionary<string, object> message)
         {
             var fullLines = (List<int>) message["fullLines"];
@@ -220,19 +221,19 @@ namespace ClassicTetris.GameplayVisual
 
         private void OnEnable()
         {
-            EventManager.StartListening("addingCellVisual", AddCellVisual);
-            EventManager.StartListening("updatingCellVisual", UpdateTetrominoVisual);
-            EventManager.StartListening("updatingGridVisual", ClearFullLines);
-            EventManager.StartListening("updatingTextures", UpdateTextures);
-            EventManager.StartListening("onLineClear", LineClearVisual);
+            EventManager.StartListening("OnTetrominoSpawn", AddCellVisual);
+            EventManager.StartListening("OnTetrominoMovement", UpdateTetrominoVisual);
+            EventManager.StartListening("ClearingLines", LineClearVisual);
+            EventManager.StartListening("OnLineClear", ClearFullLines);
+            EventManager.StartListening("OnLevelChange", UpdateTextures);
         }
         private void OnDisable()
         {
-            EventManager.StopListening("addingCellVisual", AddCellVisual);
-            EventManager.StopListening("updatingCellVisual", UpdateTetrominoVisual);
-            EventManager.StopListening("updatingGridVisual", ClearFullLines);
-            EventManager.StopListening("updatingTextures", UpdateTextures);
-            EventManager.StopListening("onLineClear", LineClearVisual);
+            EventManager.StopListening("OnTetrominoSpawn", AddCellVisual);
+            EventManager.StopListening("OnTetrominoMovement", UpdateTetrominoVisual);
+            EventManager.StopListening("ClearingLines", LineClearVisual);
+            EventManager.StopListening("OnLineClear", ClearFullLines);
+            EventManager.StopListening("OnLevelChange", UpdateTextures);
         }
     }
 }

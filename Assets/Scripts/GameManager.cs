@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         Player.PieceStateMachine.SetState(new PieceFallingState(Player.PieceStateMachine));
         GameStateMachine.SetState(new GameState(GameStateMachine));
         
-        EventManager.TriggerEvent("updatingTextures", new Dictionary<string, object>{{"currentColors", null}, {"desiredColors", LevelDatabase.Levels[startLevel].LevelColors}});
+        EventManager.TriggerEvent("OnLevelChange", new Dictionary<string, object>{{"currentColors", null}, {"desiredColors", LevelDatabase.Levels[startLevel].LevelColors}});
     }
 
     private void Awake()

@@ -42,8 +42,8 @@ namespace ClassicTetris.StateMachines.PieceStates
             player.TetrominoController.CurrentTetromino = player.Spawner.SpawnNextTetromino();
             var piecePos = player.TetrominoController.CurrentTetromino.CellPositions;
             
-            EventManager.TriggerEvent("UpdatingPieceCounters", new Dictionary<string, object>{{"player", player}});
-            EventManager.TriggerEvent("addingCellVisual", new Dictionary<string, object>{{"player", player}});
+            EventManager.TriggerEvent("OnPieceSpawn", new Dictionary<string, object>{{"player", player}});
+            EventManager.TriggerEvent("OnTetrominoSpawn", new Dictionary<string, object>{{"player", player}});
             
             // If spawned tetromino position is full in grid, game is over
             if (!player.GridController.IsCellsAvailable(piecePos))

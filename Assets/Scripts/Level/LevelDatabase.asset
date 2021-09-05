@@ -13,163 +13,163 @@ MonoBehaviour:
   m_Name: LevelDatabase
   m_EditorClassIdentifier: 
   Levels:
-  - LevelNumber: 0
+  - LevelColors:
+    - serializedVersion: 2
+      rgba: 4294465536
+    - serializedVersion: 2
+      rgba: 4294753340
+    LevelNumber: 0
     LinesToLevelUp: 10
     LevelSpeed: 0.799
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
-      rgba: 4294465536
+      rgba: 4278233088
     - serializedVersion: 2
-      rgba: 4294753340
-  - LevelNumber: 1
+      rgba: 4279826616
+    LevelNumber: 1
     LinesToLevelUp: 20
     LevelSpeed: 0.715
-    LevelColors:
-    - serializedVersion: 2
-      rgba: 4278233088
-    - serializedVersion: 2
-      rgba: 4279826616
-  - LevelNumber: 2
-    LinesToLevelUp: 30
-    LevelSpeed: 0.632
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4291559640
     - serializedVersion: 2
       rgba: 4294473976
-  - LevelNumber: 3
-    LinesToLevelUp: 40
-    LevelSpeed: 0.549
-    LevelColors:
+    LevelNumber: 2
+    LinesToLevelUp: 30
+    LevelSpeed: 0.632
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294465536
     - serializedVersion: 2
       rgba: 4283750488
-  - LevelNumber: 4
-    LinesToLevelUp: 50
-    LevelSpeed: 0.466
-    LevelColors:
+    LevelNumber: 3
+    LinesToLevelUp: 40
+    LevelSpeed: 0.549
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4283957476
     - serializedVersion: 2
       rgba: 4288215128
-  - LevelNumber: 5
-    LinesToLevelUp: 60
-    LevelSpeed: 0.383
-    LevelColors:
+    LevelNumber: 4
+    LinesToLevelUp: 50
+    LevelSpeed: 0.466
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4288215128
     - serializedVersion: 2
       rgba: 4294740072
-  - LevelNumber: 6
-    LinesToLevelUp: 70
-    LevelSpeed: 0.3
-    LevelColors:
+    LevelNumber: 5
+    LinesToLevelUp: 60
+    LevelSpeed: 0.383
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4278204664
     - serializedVersion: 2
       rgba: 4286348412
-  - LevelNumber: 7
-    LinesToLevelUp: 80
-    LevelSpeed: 0.216
-    LevelColors:
+    LevelNumber: 6
+    LinesToLevelUp: 70
+    LevelSpeed: 0.3
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294722664
     - serializedVersion: 2
       rgba: 4280287400
-  - LevelNumber: 8
-    LinesToLevelUp: 90
-    LevelSpeed: 0.133
-    LevelColors:
+    LevelNumber: 7
+    LinesToLevelUp: 80
+    LevelSpeed: 0.216
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294465536
     - serializedVersion: 2
       rgba: 4278204664
-  - LevelNumber: 9
-    LinesToLevelUp: 100
-    LevelSpeed: 0.1
-    LevelColors:
+    LevelNumber: 8
+    LinesToLevelUp: 90
+    LevelSpeed: 0.133
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4278204664
     - serializedVersion: 2
       rgba: 4282687740
-  - LevelNumber: 10
+    LevelNumber: 9
     LinesToLevelUp: 100
-    LevelSpeed: 0.083
-    LevelColors:
+    LevelSpeed: 0.1
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294465536
     - serializedVersion: 2
       rgba: 4294753340
-  - LevelNumber: 11
+    LevelNumber: 10
     LinesToLevelUp: 100
     LevelSpeed: 0.083
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4278233088
     - serializedVersion: 2
       rgba: 4279826616
-  - LevelNumber: 12
+    LevelNumber: 11
     LinesToLevelUp: 100
     LevelSpeed: 0.083
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4291559640
     - serializedVersion: 2
       rgba: 4294473976
-  - LevelNumber: 13
+    LevelNumber: 12
     LinesToLevelUp: 100
-    LevelSpeed: 0.067
-    LevelColors:
+    LevelSpeed: 0.083
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294465536
     - serializedVersion: 2
       rgba: 4283750488
-  - LevelNumber: 14
+    LevelNumber: 13
     LinesToLevelUp: 100
     LevelSpeed: 0.067
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4283957476
     - serializedVersion: 2
       rgba: 4288215128
-  - LevelNumber: 15
+    LevelNumber: 14
     LinesToLevelUp: 100
     LevelSpeed: 0.067
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4288215128
     - serializedVersion: 2
       rgba: 4294740072
-  - LevelNumber: 16
-    LinesToLevelUp: 110
-    LevelSpeed: 0.05
-    LevelColors:
+    LevelNumber: 15
+    LinesToLevelUp: 100
+    LevelSpeed: 0.067
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4278204664
     - serializedVersion: 2
       rgba: 4286348412
-  - LevelNumber: 17
-    LinesToLevelUp: 120
+    LevelNumber: 16
+    LinesToLevelUp: 110
     LevelSpeed: 0.05
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294722664
     - serializedVersion: 2
       rgba: 4280287400
-  - LevelNumber: 18
-    LinesToLevelUp: 130
+    LevelNumber: 17
+    LinesToLevelUp: 120
     LevelSpeed: 0.05
-    LevelColors:
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4294465536
     - serializedVersion: 2
       rgba: 4278204664
-  - LevelNumber: 19
-    LinesToLevelUp: 140
-    LevelSpeed: 0.033
-    LevelColors:
+    LevelNumber: 18
+    LinesToLevelUp: 130
+    LevelSpeed: 0.05
+  - LevelColors:
     - serializedVersion: 2
       rgba: 4278204664
     - serializedVersion: 2
       rgba: 4282687740
+    LevelNumber: 19
+    LinesToLevelUp: 140
+    LevelSpeed: 0.033

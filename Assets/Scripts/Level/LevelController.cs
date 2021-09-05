@@ -5,16 +5,17 @@ namespace ClassicTetris.GameLevel
 {
     public class LevelController
     {
+        public readonly LevelDatabase LevelDb;
+        
         public Level CurrentLevel;
         
-        private readonly LevelDatabase _levelDb;
         private readonly int _startLevel;
 
         public LevelController(LevelDatabase levelDb, int startLevel = 0)
         {
-            _levelDb = levelDb;
+            LevelDb = levelDb;
             _startLevel = startLevel;
-            CurrentLevel = _levelDb.Levels[startLevel];
+            CurrentLevel = LevelDb.Levels[startLevel];
         }        
 
         public void LevelUp(Player player)
@@ -23,13 +24,12 @@ namespace ClassicTetris.GameLevel
             {
                 if (player.PlayerStats.ClearedLines >= CurrentLevel.LinesToLevelUp) // First level up differs to the starting level because of the bug in original game so it has to be static
                 {
-                    EventManager.TriggerEvent("updatingTextures", new Dictionary<string, object>{{"currentColors", CurrentLevel.LevelColors}, {"desiredColors", _levelDb.Levels[CurrentLevel.LevelNumber+1].LevelColors}});
-                    CurrentLevel = _levelDb.Levels[CurrentLevel.LevelNumber+1];
+                    CurrentLevel = LevelDb.Levels[CurrentLevel.LevelNumber+1];
                 }
             }
-            else if (player.PlayerStats.ClearedLines - _levelDb.Levels[_startLevel].LinesToLevelUp >= (CurrentLevel.LevelNumber - _startLevel) * 10) // Leveling up after first level up is same which 10 line clear per level
+            else if (player.PlayerStats.ClearedLines - LevelDb.Levels[_startLevel].LinesToLevelUp >= (CurrentLevel.LevelNumber - _startLevel) * 10) // Leveling up after first level up is same which 10 line clear per level
             {
-                CurrentLevel = _levelDb.Levels[CurrentLevel.LevelNumber+1];
+                CurrentLevel = LevelDb.Levels[CurrentLevel.LevelNumber+1];
             }
 
             player.PlayerStats.Level = CurrentLevel.LevelNumber;

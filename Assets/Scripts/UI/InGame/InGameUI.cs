@@ -18,6 +18,7 @@ namespace ClassicTetris.UI
         private void UpdateUI(Dictionary<string, object> message)
         {
             var player = (Player) message["player"];
+            
             Lines.text = player.PlayerStats.ClearedLines.ToString("000");
             TopScore.text = player.PlayerStats.TopScore.ToString("000000");
             CurrentScore.text = player.PlayerStats.CurrentScore.ToString("000000");
@@ -33,12 +34,12 @@ namespace ClassicTetris.UI
 
         private void OnEnable()
         {
-            EventManager.StartListening("UpdatingUI", UpdateUI);
+            EventManager.StartListening("OnTetrominoDrop", UpdateUI);
         }
 
         private void OnDisable()
         {
-            EventManager.StopListening("UpdatingUI", UpdateUI);
+            EventManager.StopListening("OnTetrominoDrop", UpdateUI);
         }
     }
 }

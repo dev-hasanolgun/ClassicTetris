@@ -149,7 +149,7 @@ public class TetrominoController
         }
         else
         {
-            EventManager.TriggerEvent("updatingCellVisual", new Dictionary<string, object>{{"player", player}});
+            EventManager.TriggerEvent("OnTetrominoMovement", new Dictionary<string, object>{{"player", player}});
         }
 
         return isShiftable;
@@ -166,7 +166,7 @@ public class TetrominoController
         }
         else
         {
-            EventManager.TriggerEvent("updatingCellVisual", new Dictionary<string, object>{{"player", player}});
+            EventManager.TriggerEvent("OnTetrominoMovement", new Dictionary<string, object>{{"player", player}});
         }
 
         return isOrientable;

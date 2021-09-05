@@ -53,12 +53,12 @@ namespace ClassicTetris.GameplayVisual
 
         private void OnEnable()
         {
-            EventManager.StartListening("UpdatingPieceCounters", UpdatePieceCounters);
+            EventManager.StartListening("OnPieceSpawn", UpdatePieceCounters);
         }
 
         private void OnDisable()
         {
-            EventManager.StopListening("UpdatingPieceCounters", UpdatePieceCounters);
+            EventManager.StopListening("OnPieceSpawn", UpdatePieceCounters);
         }
     }
 }

@@ -8,7 +8,8 @@ namespace ClassicTetris.StateMachines.PieceStates
         private readonly PieceStateMachine _stateMachine;
         
         private List<int> _fullLines;
-        private bool _isLineClearing;
+        private bool _isLineCleared;
+        private bool _isLeveledUp;
         private float _pieceDropDelay;
         
         public PieceDroppedState(PieceStateMachine stateMachine)
@@ -19,40 +20,59 @@ namespace ClassicTetris.StateMachines.PieceStates
         public void Tick()
         {
             _pieceDropDelay += Time.deltaTime;
-            if (_pieceDropDelay > 0.25f && !_isLineClearing)
+            if (_pieceDropDelay > 0.25f && !_isLineCleared)
             {
                 _pieceDropDelay = 0;
                 _stateMachine.SetState(new PieceFallingState(_stateMachine));
             }
-            else if (_pieceDropDelay > 0.5f && _isLineClearing)
+            else if (_pieceDropDelay > 0.5f && _isLineCleared)
             {
-                EventManager.TriggerEvent("updatingGridVisual", new Dictionary<string, object>{{"fullLines", _fullLines}, {"player", _stateMachine.Player}});
                 _pieceDropDelay = 0;
                 _stateMachine.SetState(new PieceFallingState(_stateMachine));
-                _isLineClearing = false;
             }
         }
         public void OnStateEnter()
         {
             var player = _stateMachine.Player;
             var piecePos = player.TetrominoController.CurrentTetromino.CellPositions;
+            var currentLevelNumber = player.LevelController.CurrentLevel.LevelNumber;
 
             player.PlayerStats.DroppedPieces++;
             
             if (player.GridController.TryClearFullLines(piecePos, out var fullLines))
             {
                 _fullLines = fullLines;
-                _isLineClearing = true;
+                _isLineCleared = true;
                 player.PlayerStats.ClearedLines += fullLines.Count;
                 player.LevelController.LevelUp(player);
+                _isLeveledUp = currentLevelNumber != player.LevelController.CurrentLevel.LevelNumber;
                 player.LevelController.UpdateScore(player, fullLines.Count);
-
-                EventManager.TriggerEvent("onLineClear", new Dictionary<string, object>{{"fullLines", fullLines}});
+                EventManager.TriggerEvent("ClearingLines", new Dictionary<string, object>{{"fullLines", _fullLines}});
             }
-            EventManager.TriggerEvent("UpdatingUI", new Dictionary<string, object>{{"player", player}});
         }
         public void OnStateExit()
         {
+            var player = _stateMachine.Player;
+            
+            if (_isLineCleared)
+            {
+                EventManager.TriggerEvent("OnLineClear", new Dictionary<string, object>{{"fullLines", _fullLines}});
+                
+                if (_isLeveledUp)
+                {
+                    var currentLevel = player.LevelController.CurrentLevel;
+                    var currentColors = player.LevelController.LevelDb.Levels[currentLevel.LevelNumber - 1].LevelColors;
+                    var desiredColors = player.LevelController.LevelDb.Levels[currentLevel.LevelNumber].LevelColors;
+                    
+                    EventManager.TriggerEvent("OnLevelChange", new Dictionary<string, object>{{"currentColors", currentColors}, {"desiredColors", desiredColors}});
+
+                    _isLeveledUp = false;
+                }
+                
+                _isLineCleared = false;
+            }
+            
+            EventManager.TriggerEvent("OnTetrominoDrop", new Dictionary<string, object>{{"player", player}});
         }
     }
 }
